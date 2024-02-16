@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://n7m4il80lixh"]
+
+[ext_resource type="PackedScene" uid="uid://hfkftld0064h" path="res://scenes/krot_body.tscn" id="1_lwhtt"]
+[ext_resource type="Texture2D" uid="uid://bg4mpwwdqf3tf" path="res://textures/bkg.bmp" id="2_qvwv4"]
+
+[node name="main-node" type="Node2D"]
+
+[node name="krotBody" parent="." instance=ExtResource("1_lwhtt")]
+
+[node name="Camera" type="Camera2D" parent="krotBody"]
+zoom = Vector2(2, 2)
+
+[node name="background" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_qvwv4")

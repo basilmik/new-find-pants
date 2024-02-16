@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://hfkftld0064h"]
+
+[ext_resource type="Texture2D" uid="uid://bvk0r6kov3r4q" path="res://textures/krot/krot01.png" id="1_884bj"]
+[ext_resource type="Script" path="res://scripts/krot_body.gd" id="1_f0rsm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n6gfi"]
+radius = 13.0
+height = 60.0
+
+[node name="krotBody" type="CharacterBody2D"]
+script = ExtResource("1_f0rsm")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_n6gfi")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_884bj")
