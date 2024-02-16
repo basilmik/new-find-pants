@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://byq2kr46locnx"]
+
+[ext_resource type="Texture2D" uid="uid://15v6ygy1s28b" path="res://textures/items/кристалл.png" id="1_mchgk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8xy6p"]
+radius = 11.0
+height = 22.0
+
+[node name="item" type="RigidBody2D"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_8xy6p")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_mchgk")

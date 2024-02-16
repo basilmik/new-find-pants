@@ -1,15 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://n7m4il80lixh"]
+[gd_scene load_steps=4 format=3 uid="uid://n7m4il80lixh"]
 
 [ext_resource type="PackedScene" uid="uid://hfkftld0064h" path="res://scenes/krot_body.tscn" id="1_lwhtt"]
 [ext_resource type="Texture2D" uid="uid://bg4mpwwdqf3tf" path="res://textures/bkg.bmp" id="2_qvwv4"]
+[ext_resource type="PackedScene" uid="uid://byq2kr46locnx" path="res://scenes/item.tscn" id="3_b28x1"]
 
 [node name="main-node" type="Node2D"]
 
 [node name="krotBody" parent="." instance=ExtResource("1_lwhtt")]
 
 [node name="Camera" type="Camera2D" parent="krotBody"]
+ignore_rotation = false
 zoom = Vector2(2, 2)
 
 [node name="background" type="Sprite2D" parent="."]
 z_index = -1
 texture = ExtResource("2_qvwv4")
+
+[node name="item" parent="." instance=ExtResource("3_b28x1")]
+position = Vector2(147, 1)
