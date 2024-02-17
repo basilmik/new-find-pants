@@ -13,6 +13,7 @@ var has_item = false
 var item_node
 var nose_marker_node
 var background_node
+var count_time_zero_speed = 0
 
 func _ready():
 	item_node = get_node("../item")
@@ -21,12 +22,18 @@ func _ready():
 
 
 func _physics_process(delta):
-	get_input()
-	
+	get_input()	
 	move_and_slide()
+	if (velocity != zero_velocity):
+		count_time_zero_speed=0
+	else:
+		count_time_zero_speed+=1
 	
 	if has_item:
 		set_item_position()
+	
+func get_count_time_zero_speed():
+	return count_time_zero_speed
 	
 func set_item_position():
 	item_node.rotation = rotation

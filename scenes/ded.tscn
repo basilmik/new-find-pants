@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://da0vn36kmvbwj"]
+
+[ext_resource type="Texture2D" uid="uid://detswv0xy328n" path="res://textures/ded.bmp" id="1_fh82r"]
+[ext_resource type="Script" path="res://scripts/ded.gd" id="1_wiplp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pr4je"]
+radius = 22.2036
+
+[node name="ded" type="CharacterBody2D"]
+script = ExtResource("1_wiplp")
+
+[node name="Death" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pr4je")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0.999996, 0)
+scale = Vector2(0.110153, 0.121308)
+texture = ExtResource("1_fh82r")
