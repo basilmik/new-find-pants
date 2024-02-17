@@ -21,7 +21,7 @@ func _ready():
 	background_node = get_node("../background")
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	get_input()	
 	move_and_slide()
 	if (velocity != zero_velocity):
@@ -46,16 +46,13 @@ func rotate_body():
 
 
 func get_input():	
-			
-	var isIdle = true
+
 	velocity = zero_velocity
 	
 	if Input.is_action_pressed("d"):
-		isIdle = false
 		angle_rotate_ad -= 2
 		
 	if Input.is_action_pressed("a"): 
-		isIdle = false
 		angle_rotate_ad += 2
 		
 	if Input.is_action_pressed("e"): 
@@ -66,7 +63,6 @@ func get_input():
 	
 	
 	if Input.is_action_pressed("w"):
-		isIdle = false
 		current_rotated_angle = self.get_rotation()
 		var speed_x = sin(current_rotated_angle)*(maxSpeed)
 		var speed_y = cos(current_rotated_angle)*(-maxSpeed)

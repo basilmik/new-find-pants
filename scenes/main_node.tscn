@@ -1,13 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://n7m4il80lixh"]
+[gd_scene load_steps=9 format=3 uid="uid://n7m4il80lixh"]
 
 [ext_resource type="PackedScene" uid="uid://hfkftld0064h" path="res://scenes/krot_body.tscn" id="1_lwhtt"]
 [ext_resource type="Texture2D" uid="uid://bg4mpwwdqf3tf" path="res://textures/bkg.bmp" id="2_qvwv4"]
 [ext_resource type="PackedScene" uid="uid://byq2kr46locnx" path="res://scenes/item.tscn" id="3_b28x1"]
 [ext_resource type="Script" path="res://scenes/home.gd" id="4_mapbj"]
 [ext_resource type="PackedScene" uid="uid://da0vn36kmvbwj" path="res://scenes/ded.tscn" id="5_mqndn"]
+[ext_resource type="PackedScene" uid="uid://belfev2p4y0d0" path="res://scenes/collision_box.tscn" id="6_ybqp4"]
+[ext_resource type="Script" path="res://scripts/collision_box.gd" id="7_pk5qd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rd3b0"]
-radius = 51.1566
+radius = 97.8673
 
 [node name="main-node" type="Node2D"]
 
@@ -16,10 +18,11 @@ position = Vector2(73, -79)
 
 [node name="Camera" type="Camera2D" parent="krotBody"]
 ignore_rotation = false
-zoom = Vector2(2, 2)
 
 [node name="background" type="Sprite2D" parent="."]
 z_index = -1
+position = Vector2(15, 16)
+scale = Vector2(1.83041, 1.83041)
 texture = ExtResource("2_qvwv4")
 
 [node name="item" parent="." instance=ExtResource("3_b28x1")]
@@ -29,11 +32,16 @@ position = Vector2(-56, -131)
 script = ExtResource("4_mapbj")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="home"]
-position = Vector2(73, -78)
+position = Vector2(141, -119)
 shape = SubResource("CircleShape2D_rd3b0")
 
 [node name="ded" parent="." instance=ExtResource("5_mqndn")]
 
+[node name="collisionBox" parent="." instance=ExtResource("6_ybqp4")]
+script = ExtResource("7_pk5qd")
+
 [connection signal="body_entered" from="item" to="krotBody" method="_on_item_body_entered"]
 [connection signal="body_entered" from="home" to="krotBody" method="_on_home_body_entered"]
+[connection signal="body_entered" from="home" to="ded" method="_on_home_body_entered"]
 [connection signal="body_exited" from="home" to="krotBody" method="_on_home_body_exited"]
+[connection signal="body_exited" from="home" to="ded" method="_on_home_body_exited"]

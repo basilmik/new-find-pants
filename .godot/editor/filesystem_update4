@@ -5,3 +5,6 @@ res://scripts/krot_body.gd
 res://scripts/item.gd
 res://scenes/ded.tscn
 res://scripts/ded.gd
+res://scripts/collision_box.gd
+res://scenes/home.gd
+res://scenes/collision_box.tscn
