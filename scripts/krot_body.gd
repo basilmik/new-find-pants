@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name krotBody_class
 
 var maxSpeed = 100
 var currentRot = 0
@@ -6,21 +7,26 @@ var current_rotated_angle = 0
 var angle_rotate_ad = 0
 var zero_velocity = Vector2()
 
+var has_item = false
+
+
 var item_node
 var nose_marker_node
+var background_node
 
 func _ready():
 	item_node = get_node("../item")
-	nose_marker_node = get_node("nose/CollisionShape2D")
-
+	nose_marker_node = get_node("nose/noseMarker")
+	background_node = get_node("../background")
 
 
 func _physics_process(delta):
-	
 	get_input()
 	
 	move_and_slide()
-	set_item_position()
+	
+	if has_item:
+		set_item_position()
 	
 func set_item_position():
 	item_node.rotation = rotation
@@ -35,24 +41,56 @@ func rotate_body():
 func get_input():	
 			
 	var isIdle = true
-	if Input.is_action_pressed("d"): #rotate right
+	velocity = zero_velocity
+	
+	if Input.is_action_pressed("d"):
 		isIdle = false
 		angle_rotate_ad -= 2
 		
-	if Input.is_action_pressed("a"): #rotate right
+	if Input.is_action_pressed("a"): 
 		isIdle = false
 		angle_rotate_ad += 2
-
-
+		
+	if Input.is_action_pressed("e"): 
+		if has_item:
+			has_item = false
+		
 	rotate_body()
 	
-	velocity = zero_velocity
-	current_rotated_angle = self.get_rotation()
 	
 	if Input.is_action_pressed("w"):
 		isIdle = false
+		current_rotated_angle = self.get_rotation()
 		var speed_x = sin(current_rotated_angle)*(maxSpeed)
 		var speed_y = cos(current_rotated_angle)*(-maxSpeed)
 		self.set_velocity(Vector2(speed_x, speed_y))
-
 	
+
+
+func _on_home_body_entered(body):
+	if (body is krotBody_class):
+		print("krot at home!")
+		background_node.texture = load("res://textures/bkg2.bmp")
+	pass # Replace with function body.
+
+
+func _on_home_body_exited(body):
+	if (body is krotBody_class):
+		print("krot is not at home!")
+		background_node.texture = load("res://textures/bkg.bmp")
+	pass # Replace with function body.
+
+
+
+func _on_nose_body_entered(body):
+	if (body is item_class):
+		print("nose touch item")
+		has_item = true;
+		item_node = body
+	pass # Replace with function body.
+
+
+func _on_nose_body_exited(body):
+	if (body is item_class):
+		print("nose no touch item")
+	pass # Replace with function body.

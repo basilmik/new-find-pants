@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://scripts/krot_body.gd" id="1_f0rsm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n6gfi"]
-radius = 13.0
-height = 60.0
+radius = 11.0
+height = 44.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p6juu"]
 radius = 4.0
@@ -24,6 +24,9 @@ texture = ExtResource("1_884bj")
 [node name="noseMarker" type="Marker2D" parent="nose"]
 position = Vector2(0, -29)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="nose"]
+[node name="CollisionShape" type="CollisionShape2D" parent="nose"]
 position = Vector2(0, -26)
 shape = SubResource("CircleShape2D_p6juu")
+
+[connection signal="body_entered" from="nose" to="." method="_on_nose_body_entered"]
+[connection signal="body_exited" from="nose" to="." method="_on_nose_body_exited"]
