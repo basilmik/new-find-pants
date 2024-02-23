@@ -5,10 +5,10 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n6gfi"]
 radius = 11.0
-height = 44.0
+height = 58.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p6juu"]
-radius = 4.0
+radius = 6.0
 
 [node name="krotBody" type="CharacterBody2D"]
 script = ExtResource("1_f0rsm")
@@ -17,6 +17,7 @@ script = ExtResource("1_f0rsm")
 shape = SubResource("CapsuleShape2D_n6gfi")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("1_884bj")
 
 [node name="nose" type="Area2D" parent="."]
@@ -25,7 +26,7 @@ texture = ExtResource("1_884bj")
 position = Vector2(0, -29)
 
 [node name="CollisionShape" type="CollisionShape2D" parent="nose"]
-position = Vector2(0, -26)
+position = Vector2(0, -27)
 shape = SubResource("CircleShape2D_p6juu")
 
 [connection signal="body_entered" from="nose" to="." method="_on_nose_body_entered"]

@@ -1,10 +1,5 @@
-res://scenes/krot_body.tscn
 res://scenes/main_node.tscn
-res://scenes/item.tscn
-res://scripts/krot_body.gd
-res://scripts/item.gd
 res://scenes/ded.tscn
-res://scripts/ded.gd
-res://scripts/collision_box.gd
-res://scenes/home.gd
+res://scenes/krot_body.tscn
+res://scripts/krot_body.gd
 res://scenes/collision_box.tscn

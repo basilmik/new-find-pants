@@ -13,13 +13,15 @@ var has_item = false
 var item_node
 var nose_marker_node
 var background_node
+var camera_node
 var count_time_zero_speed = 0
 
 func _ready():
 	item_node = get_node("../item")
 	nose_marker_node = get_node("nose/noseMarker")
 	background_node = get_node("../background")
-
+	camera_node = $Camera
+	camera_node.position.y-=100
 
 func _physics_process(_delta):
 	get_input()	
@@ -73,14 +75,14 @@ func get_input():
 func _on_home_body_entered(body):
 	if (body is krotBody_class):
 		print("krot at home!")
-		background_node.texture = load("res://textures/bkg2.bmp")
+		background_node.texture = load("res://textures/plan.png")
 	pass # Replace with function body.
 
 
 func _on_home_body_exited(body):
 	if (body is krotBody_class):
 		print("krot is not at home!")
-		background_node.texture = load("res://textures/bkg.bmp")
+		background_node.texture = load("res://textures/plan.png")
 	pass # Replace with function body.
 
 

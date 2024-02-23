@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://n7m4il80lixh"]
+[gd_scene load_steps=10 format=3 uid="uid://cjq1ogtpkec0c"]
 
 [ext_resource type="PackedScene" uid="uid://hfkftld0064h" path="res://scenes/krot_body.tscn" id="1_lwhtt"]
-[ext_resource type="Texture2D" uid="uid://bg4mpwwdqf3tf" path="res://textures/bkg.bmp" id="2_qvwv4"]
+[ext_resource type="Texture2D" uid="uid://um4nlqu7ktuq" path="res://textures/plan.png" id="2_pyhbx"]
 [ext_resource type="PackedScene" uid="uid://byq2kr46locnx" path="res://scenes/item.tscn" id="3_b28x1"]
-[ext_resource type="Script" path="res://scenes/home.gd" id="4_mapbj"]
+[ext_resource type="Script" path="res://scripts/home.gd" id="4_veiva"]
 [ext_resource type="PackedScene" uid="uid://da0vn36kmvbwj" path="res://scenes/ded.tscn" id="5_mqndn"]
 [ext_resource type="PackedScene" uid="uid://belfev2p4y0d0" path="res://scenes/collision_box.tscn" id="6_ybqp4"]
 [ext_resource type="Script" path="res://scripts/collision_box.gd" id="7_pk5qd"]
@@ -11,34 +11,45 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_rd3b0"]
 radius = 97.8673
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2wr8x"]
+size = Vector2(829, 20)
+
 [node name="main-node" type="Node2D"]
 
 [node name="krotBody" parent="." instance=ExtResource("1_lwhtt")]
-position = Vector2(73, -79)
+position = Vector2(-770, 643)
 
 [node name="Camera" type="Camera2D" parent="krotBody"]
 ignore_rotation = false
+zoom = Vector2(3, 3)
 
 [node name="background" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(15, 16)
 scale = Vector2(1.83041, 1.83041)
-texture = ExtResource("2_qvwv4")
+texture = ExtResource("2_pyhbx")
 
 [node name="item" parent="." instance=ExtResource("3_b28x1")]
 position = Vector2(-56, -131)
 
 [node name="home" type="Area2D" parent="."]
-script = ExtResource("4_mapbj")
+script = ExtResource("4_veiva")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="home"]
-position = Vector2(141, -119)
+position = Vector2(-774, 807)
 shape = SubResource("CircleShape2D_rd3b0")
 
 [node name="ded" parent="." instance=ExtResource("5_mqndn")]
+position = Vector2(1112, -1034)
 
 [node name="collisionBox" parent="." instance=ExtResource("6_ybqp4")]
+position = Vector2(-10, -52)
 script = ExtResource("7_pk5qd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisionBox"]
+position = Vector2(1034, -902)
+rotation = 0.670206
+shape = SubResource("RectangleShape2D_2wr8x")
 
 [connection signal="body_entered" from="item" to="krotBody" method="_on_item_body_entered"]
 [connection signal="body_entered" from="home" to="krotBody" method="_on_home_body_entered"]
