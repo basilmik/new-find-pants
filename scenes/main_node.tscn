@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjq1ogtpkec0c"]
+[gd_scene load_steps=12 format=3 uid="uid://cjq1ogtpkec0c"]
 
 [ext_resource type="PackedScene" uid="uid://hfkftld0064h" path="res://scenes/krot_body.tscn" id="1_lwhtt"]
 [ext_resource type="Texture2D" uid="uid://um4nlqu7ktuq" path="res://textures/plan.png" id="2_pyhbx"]
@@ -9,19 +9,25 @@
 [ext_resource type="Script" path="res://scripts/collision_box.gd" id="7_pk5qd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rd3b0"]
-radius = 97.8673
+radius = 183.134
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i2ojw"]
+radius = 112.643
+height = 290.463
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wr8x"]
-size = Vector2(829, 20)
+size = Vector2(1615.63, 193.197)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o70do"]
+size = Vector2(951, 1070.5)
 
 [node name="main-node" type="Node2D"]
 
 [node name="krotBody" parent="." instance=ExtResource("1_lwhtt")]
-position = Vector2(-770, 643)
+position = Vector2(-732, 570)
 
 [node name="Camera" type="Camera2D" parent="krotBody"]
 ignore_rotation = false
-zoom = Vector2(3, 3)
 
 [node name="background" type="Sprite2D" parent="."]
 z_index = -1
@@ -35,21 +41,30 @@ position = Vector2(-56, -131)
 [node name="home" type="Area2D" parent="."]
 script = ExtResource("4_veiva")
 
-[node name="CollisionShape" type="CollisionShape2D" parent="home"]
-position = Vector2(-774, 807)
+[node name="home" type="CollisionShape2D" parent="home"]
+position = Vector2(-769, 816)
 shape = SubResource("CircleShape2D_rd3b0")
 
+[node name="coverA" type="CollisionShape2D" parent="home"]
+position = Vector2(-194, 569)
+rotation = -0.96217
+shape = SubResource("CapsuleShape2D_i2ojw")
+
 [node name="ded" parent="." instance=ExtResource("5_mqndn")]
-position = Vector2(1112, -1034)
+position = Vector2(-946, 393)
 
 [node name="collisionBox" parent="." instance=ExtResource("6_ybqp4")]
 position = Vector2(-10, -52)
 script = ExtResource("7_pk5qd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisionBox"]
-position = Vector2(1034, -902)
-rotation = 0.670206
+position = Vector2(-394.624, 200.674)
+rotation = 0.00606024
 shape = SubResource("RectangleShape2D_2wr8x")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="collisionBox"]
+position = Vector2(474, 746.25)
+shape = SubResource("RectangleShape2D_o70do")
 
 [connection signal="body_entered" from="item" to="krotBody" method="_on_item_body_entered"]
 [connection signal="body_entered" from="home" to="krotBody" method="_on_home_body_entered"]

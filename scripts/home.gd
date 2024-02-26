@@ -1,5 +1,5 @@
 extends Area2D
-
+class_name cover_class
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

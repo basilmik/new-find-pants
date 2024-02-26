@@ -52,10 +52,10 @@ func get_input():
 	velocity = zero_velocity
 	
 	if Input.is_action_pressed("d"):
-		angle_rotate_ad -= 2
+		angle_rotate_ad -= 1
 		
 	if Input.is_action_pressed("a"): 
-		angle_rotate_ad += 2
+		angle_rotate_ad += 1
 		
 	if Input.is_action_pressed("e"): 
 		if has_item:
@@ -71,14 +71,14 @@ func get_input():
 		self.set_velocity(Vector2(speed_x, speed_y))
 	
 
-
+#someting entered home
 func _on_home_body_entered(body):
 	if (body is krotBody_class):
 		print("krot at home!")
 		background_node.texture = load("res://textures/plan.png")
 	pass # Replace with function body.
 
-
+#someting exited home
 func _on_home_body_exited(body):
 	if (body is krotBody_class):
 		print("krot is not at home!")

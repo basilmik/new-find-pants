@@ -29,10 +29,12 @@ var stand_count = 0
 var max_stand_count = 150
 
 var is_standing = false
+var is_krot_hiding = false
 
 var speed_x
 var speed_y
 
+var wait_when_hidden_counter = 0
 
 func _ready():
 	krot_node = get_node("../krotBody")
@@ -57,6 +59,7 @@ func check_following():
 		has_to_follow = false
 
 
+
 func _process(_delta):
 	velocity = zero_velocity
 	
@@ -65,7 +68,7 @@ func _process(_delta):
 		check_following()
 	
 	behave()
-	
+
 	self.set_velocity(Vector2(speed_x, speed_y))
 	move_and_slide()
 	pass
@@ -79,8 +82,19 @@ func follow_krot():
 
 
 func behave():
+	if (is_krot_hiding == true):
+		speed_x = 0
+		speed_y = 0
+		if (wait_when_hidden_counter == 0):		
+			has_to_follow =  false
+			is_krot_hiding = false
+			print ("ded is not interested")
+			return
+		else:
+			wait_when_hidden_counter-=1
+			return
+	
 	if has_to_follow:
-		
 		follow_krot()
 	else:
 		walk_around()
@@ -117,26 +131,32 @@ func walk_around():
 	pass	
 
 
-
+#when hits a boundary wall
 func _on_area_body_entered(body):
 	if body is collisionBox_class:
 		walk_direction += 2
 		walk_direction %= 4
 	pass 
 
-
+#krot hides in cover
 func _on_home_body_entered(body):
 	if body is krotBody_class:
-		print("krot is not visible!")
-		has_to_follow = false
+		print("krot is not visible!") #krot is hidden
+		#has_to_follow = false
 		is_krot_visible = false
-		
+		is_krot_hiding = true
+		wait_when_hidden_counter = 100
+		speed_x = 0
+		speed_y = 0
+		self.set_velocity(Vector2(speed_x, speed_y))
 	pass
 
-
+#krot is out of cover
 func _on_home_body_exited(body):
 	if body is krotBody_class:
 		print("krot visible!")
-		
+		is_krot_hiding =  false
 		is_krot_visible = true
+		if wait_when_hidden_counter == 0:
+			has_to_follow = false
 	pass
