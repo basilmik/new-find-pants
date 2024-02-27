@@ -1,7 +1,8 @@
 res://scenes/main_node.tscn
-res://scripts/krot_body.gd
 res://scripts/ded.gd
-res://scripts/home.gd
 res://scenes/ded.tscn
 res://scenes/krot_body.tscn
 res://scenes/collision_box.tscn
+res://scripts/krot_body.gd
+res://scenes/krot_center.gd
+res://scripts/krot_center.gd

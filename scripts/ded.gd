@@ -35,6 +35,7 @@ var speed_x
 var speed_y
 
 var wait_when_hidden_counter = 0
+var wait_when_hidden_max = 500
 
 func _ready():
 	krot_node = get_node("../krotBody")
@@ -69,7 +70,7 @@ func _process(_delta):
 	
 	behave()
 
-	self.set_velocity(Vector2(speed_x, speed_y))
+	velocity = Vector2(speed_x, speed_y)
 	move_and_slide()
 	pass
 
@@ -145,10 +146,10 @@ func _on_home_body_entered(body):
 		#has_to_follow = false
 		is_krot_visible = false
 		is_krot_hiding = true
-		wait_when_hidden_counter = 100
+		wait_when_hidden_counter = wait_when_hidden_max
 		speed_x = 0
 		speed_y = 0
-		self.set_velocity(Vector2(speed_x, speed_y))
+
 	pass
 
 #krot is out of cover

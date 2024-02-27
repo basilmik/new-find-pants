@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://hfkftld0064h"]
+[gd_scene load_steps=6 format=3 uid="uid://bj1fya48hn3y5"]
 
 [ext_resource type="Texture2D" uid="uid://bvk0r6kov3r4q" path="res://textures/krot/krot01.png" id="1_884bj"]
 [ext_resource type="Script" path="res://scripts/krot_body.gd" id="1_f0rsm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n6gfi"]
-radius = 11.0
-height = 58.0
+radius = 14.0068
+height = 45.9988
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g33i8"]
+radius = 8.0
+height = 22.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p6juu"]
 radius = 6.0
@@ -13,19 +17,25 @@ radius = 6.0
 [node name="krotBody" type="CharacterBody2D"]
 script = ExtResource("1_f0rsm")
 
-[node name="Collision" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_n6gfi")
-
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("1_884bj")
+
+[node name="main_body" type="CollisionShape2D" parent="."]
+position = Vector2(-4.65661e-09, 5)
+rotation = 3.1488
+shape = SubResource("CapsuleShape2D_n6gfi")
+
+[node name="head" type="CollisionShape2D" parent="."]
+position = Vector2(0, -22)
+shape = SubResource("CapsuleShape2D_g33i8")
 
 [node name="nose" type="Area2D" parent="."]
 
 [node name="noseMarker" type="Marker2D" parent="nose"]
 position = Vector2(0, -29)
 
-[node name="CollisionShape" type="CollisionShape2D" parent="nose"]
+[node name="shape" type="CollisionShape2D" parent="nose"]
 position = Vector2(0, -27)
 shape = SubResource("CircleShape2D_p6juu")
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cjq1ogtpkec0c"]
 
-[ext_resource type="PackedScene" uid="uid://hfkftld0064h" path="res://scenes/krot_body.tscn" id="1_lwhtt"]
+[ext_resource type="PackedScene" uid="uid://bj1fya48hn3y5" path="res://scenes/krot_body.tscn" id="1_lwhtt"]
 [ext_resource type="Texture2D" uid="uid://um4nlqu7ktuq" path="res://textures/plan.png" id="2_pyhbx"]
 [ext_resource type="PackedScene" uid="uid://byq2kr46locnx" path="res://scenes/item.tscn" id="3_b28x1"]
 [ext_resource type="Script" path="res://scripts/home.gd" id="4_veiva"]
@@ -65,6 +65,9 @@ shape = SubResource("RectangleShape2D_2wr8x")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="collisionBox"]
 position = Vector2(474, 746.25)
 shape = SubResource("RectangleShape2D_o70do")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisionBox"]
+polygon = PackedVector2Array(-1143, 398, -1058, 398, -1039, 506, -977, 581, -905, 612, -824, 657, -810, 684, -901, 741, -932, 824, -920, 956, -844, 1041, -743, 1052, -676, 1005, -619, 916, -587, 832, -607, 731, -654, 669, -691, 613, -679, 590, -629, 618, -541, 703, -440, 819, -385, 888, -297, 1074, -180, 1005, -124, 1009, -77, 1032, -40, 1093, -13, 1221, -1175, 1227, -1179, 393)
 
 [connection signal="body_entered" from="item" to="krotBody" method="_on_item_body_entered"]
 [connection signal="body_entered" from="home" to="krotBody" method="_on_home_body_entered"]

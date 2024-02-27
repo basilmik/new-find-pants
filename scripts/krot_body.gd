@@ -99,3 +99,4 @@ func _on_nose_body_exited(body):
 	if (body is item_class):
 		print("nose no touch item")
 	pass # Replace with function body.
+
